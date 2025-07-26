@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>履歴書作成フォーム</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>履歴書作成（Web版・体験用）</h1>
+
+  <form id="resumeForm">
+    <label>氏名（漢字）<input type="text" name="name" required></label>
+    <label>氏名（ふりがな）<input type="text" name="kana"></label>
+    <label>最終学歴<input type="text" name="education"></label>
+    <label>職務経歴<textarea name="experience" rows="3"></textarea></label>
+    <label>自己PR<textarea name="pr" rows="4"></textarea></label>
+    <button type="submit">内容を確認</button>
+  </form>
+
+  <div id="preview">
+    <h2>履歴書プレビュー</h2>
+    <p><strong>氏名：</strong><span id="preview_name"></span></p>
+    <p><strong>ふりがな：</strong><span id="preview_kana"></span></p>
+    <p><strong>学歴：</strong><span id="preview_education"></span></p>
+    <p><strong>職歴：</strong><span id="preview_experience"></span></p>
+    <p><strong>自己PR：</strong><span id="preview_pr"></span></p>
+    <p class="note">※PDFファイルの作成にはGUI版ツールをご利用ください。</p>
+  </div>
+
+  <script>
+    const form = document.getElementById('resumeForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      document.getElementById('preview_name').textContent = data.get('name');
+      document.getElementById('preview_kana').textContent = data.get('kana');
+      document.getElementById('preview_education').textContent = data.get('education');
+      document.getElementById('preview_experience').textContent = data.get('experience');
+      document.getElementById('preview_pr').textContent = data.get('pr');
+    });
+  </script>
+</body>
+</html>
